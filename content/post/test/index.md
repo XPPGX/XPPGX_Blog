@@ -37,6 +37,7 @@ tags:
 - IFTTT
 
 categories:
+- IOT
 - Demo board Application
 - Tutorial
 ---
