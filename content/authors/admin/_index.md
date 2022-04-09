@@ -1,17 +1,17 @@
 ---
 # Display name
-title: Nelson Bighetti
+title: XPPGX
 
 # Is this the primary user of the site?
 superuser: true
 
 # Role/position/tagline
-role: Professor of Artificial Intelligence
+role: MCU Eval Boards maker
 
 # Organizations/Affiliations to show in About widget
 organizations:
-- name: Stanford University
-  url: https://www.stanford.edu/
+- name: National Taiwan University of Science and Technology
+  url: https://www.ntust.edu.tw/home.php
 
 # Short bio (displayed in user profile at end of posts)
 bio: My research interests include distributed robotics, mobile computing and programmable matter.
@@ -51,7 +51,7 @@ social:
   link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
+  link: https://github.com/XPPGX
 - icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/
