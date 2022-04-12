@@ -32,11 +32,12 @@ authors:
 - admin
 
 tags:
-- Linkit
+- Tutorial
 - WiFi
 
 categories:
-- Tutorial
+- Linkit
+
 ---
 
 ![WiFi](featured.jpg)

@@ -32,14 +32,13 @@ authors:
 - admin
 
 tags:
-- Linkit
 - ThingSpeak
 - IFTTT
-
-categories:
 - IOT
 - Demo board Application
 - Tutorial
+categories:
+- Linkit
 ---
 
 ![IOT](IOT.jpg)

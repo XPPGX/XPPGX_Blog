@@ -32,12 +32,11 @@ authors:
 - admin
 
 tags:
-- Linkit
-- ThingSpeak
-
-categories:
 - Tutorial
+- ThingSpeak
 - HTTP
+categories:
+- Linkit
 ---
 
 
