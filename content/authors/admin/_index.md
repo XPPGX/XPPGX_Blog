@@ -64,7 +64,7 @@ email: ""
 highlight_name: true
 ---
 
-XPPGX is a student of electronic and computer engineering at the NTUST HPC Lab. His research interests include firmware, software and algorithm development. 
+XPPGX is major in electronic and computer engineering, and he is a member of the NTUST HPC Lab. His research interests include firmware, software and algorithm development. 
 
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/resume.pdf" "newtab" >}}resumé{{< /staticref >}}.

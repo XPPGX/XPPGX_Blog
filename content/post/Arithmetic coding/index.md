@@ -12,7 +12,7 @@ projects: []
 date: "2022-04-12T00:00:00Z"
 
 # Date updated
-lastmod: "2022-04-12T00:00:00Z"
+lastmod: "2022-04-13T00:00:00Z"
 
 # Is this an unpublished draft?
 draft: false
@@ -130,7 +130,9 @@ int main(){
     char char_freq[CAP_char] = {0};
     double prob[CAP_char] = {0};
     prob_interval_node prob_interval[CAP_char];
-    double code;
+    double code; /*Store the code encoded with 
+    the information about the test string*/
+    
     get_str_prob(test_input_string,char_freq,prob);
     get_prob_interval(test_input_string,prob,prob_interval);
     code = arithmetic_encode(test_input_string,prob,prob_interval);
