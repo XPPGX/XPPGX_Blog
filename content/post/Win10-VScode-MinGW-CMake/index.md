@@ -289,9 +289,9 @@ categories:
 ---
 
 ## 完成
-到這裡就完成了Vscode、CMake、MinGW在Win10上的配置與應用，後續若要建立新的專案可以參考此資料夾結構與檔案的關係，並對".vscode/launch.json"與"tasks.json"進行適當修改。
-"launch.json" : 設置Debug相關的
-"tasks.json" : 寫一些命令在裡面，讓VScode跟著命令進行專案的創建。
+到這裡就完成了Vscode、CMake、MinGW在Win10上的配置與應用，後續若要建立新的專案可以參考此資料夾結構與檔案的關係，並對".vscode/launch.json"與".vscode/tasks.json"進行適當修改。
+- "launch.json" : 設置Debug相關的
+- "tasks.json" : 寫一些命令在裡面，讓VScode跟著命令進行專案的創建。
 
 ## Reference
 1. [vscode不写一行配置，用cmake傻瓜式搭建C++编译调试环境](https://zhuanlan.zhihu.com/p/139599430)
