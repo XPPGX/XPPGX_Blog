@@ -287,12 +287,23 @@ categories:
 結果也會跟"方式一"一樣，只是他會直接進到Debug畫面，需事先設定好程式的斷點。
 
 ---
-
 ## 完成
 到這裡就完成了Vscode、CMake、MinGW在Win10上的配置與應用，後續若要建立新的專案可以參考此資料夾結構與檔案的關係，並對".vscode/launch.json"與".vscode/tasks.json"進行適當修改。
 - "launch.json" : 設置Debug相關的
 - "tasks.json" : 寫一些命令在裡面，讓VScode跟著命令進行專案的創建。
 
+---
+## 延伸
+1. 如果要嘗試修改**專案結構**與"CMakeLists.txt"可以參考這個Git repo
+    - [試著修改專案結構與"CMakeLists.txt"](https://github.com/XPPGX/CMake_test)
+    
+2. 剩下要多理解CMake語法的話，可以參考這篇文章
+    - [CMake 入門](https://zh.m.wikibooks.org/wiki/CMake_%E5%85%A5%E9%96%80)
+3. 要試著理解"tasks.json"的話，可以參考這篇文章
+    - [VSCode 配置文件的变量索引](https://zhuanlan.zhihu.com/p/44967536)
+
+    可以藉著這篇文章與本專案的"tasks.json"比對內容以理解其中的語法。
+---
 ## Reference
 1. [vscode不写一行配置，用cmake傻瓜式搭建C++编译调试环境](https://zhuanlan.zhihu.com/p/139599430)
 2. [VsCode使用CMake与mingw进行开发编译调试](https://www.notion.so/CMake-Make-5afab28b24164350984879d3f5e9c863#74677569df5b4034abaa337678e8f673)
