@@ -50,7 +50,7 @@ categories:
 ---
 ## 一、安裝必要軟體
 ### 1. 安裝VScode與MinGW
-參考這位作者的文章進行VScode與MinGW安裝=>[用 VSCode 寫 C/C++ 教學](https://hackmd.io/wGohSmNzTHK4WjDYknMYaw?view)，跟著上面那篇文章的教學應該能夠完成以下幾點：
+參考這位作者的文章進行VScode與MinGW安裝=>[用 VSCode 寫 C/C++ 教學](https://hackmd.io/wGohSmNzTHK4WjDYknMYaw?view)(只要跟著這篇文章從頭開始做到安裝完MinGW就好了)，跟著上面那篇文章的教學應該能夠完成以下幾點：
 - Visual Studio code安裝完畢
 - Visual Studio code中的Extension(在VScode中，透過 **"同時按下ctrl + shift + X"** )，可以看到已經安裝好擴充套件如下：
     - C/C++
