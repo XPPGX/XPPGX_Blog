@@ -95,90 +95,119 @@ categories:
 
 ## 二、創建專案
 ### 1. 在任意路徑下新增資料夾
-此資料夾名稱可以任意設置(這裡將資料夾名稱暫定為VscodeCmakeGccTest)，要注意此資料夾的路徑上不可出現任何中文。<br>
-(我的資料夾路徑是C:\Users\Arthur\Desktop\VscodeCmakeGccTest)<br>
+此資料夾名稱可以任意設置(這裡將資料夾名稱暫定為CMake_test)，要注意此資料夾的路徑上不可出現任何中文。<br>
+(我的資料夾路徑是E:\program\VScode_setting\CMake_test)<br>
 
-### 2. 在VscodeCmakeGccTest中新增資料夾與檔案
-對VscodeCmakeGccTest資料夾點選滑鼠右鍵，以code開啟。然後就如下圖中的檔案結構新增資料夾與檔案，檔案內容先空白，下面會提供檔案內容的範例。圖中沒有副檔名的是資料夾，有副檔名的是檔案。依照圖中檔案與資料夾的關係建立檔案，例如：test資料夾中有CMakeLists.txt、main.c(注意有一個資料夾的名子是".vscode"，不能少打那個".")<br>
-圖中最外層就是在VscodeCmakeGccTest資料夾底下。
+### 2. 在CMake_test中新增資料夾與檔案
+可以選擇到github的[CMake_test](https://github.com/XPPGX/CMake_test)去clone這個repo，也可以自己依照下面的檔案內容與說明去創建。<br><br>
+對CMake_test資料夾點選滑鼠右鍵，以code開啟。然後就如下圖中的檔案結構新增資料夾與檔案，檔案內容先空白，下面會提供檔案內容的範例。圖中沒有副檔名的是資料夾，有副檔名的是檔案。依照圖中檔案與資料夾的關係建立檔案，例如：test資料夾中有CMakeLists.txt、main.c(注意有一個資料夾的名子是".vscode"，不能少打那個".")<br>
+在下圖中，以下檔案不用創建，這些是屬於git的檔案：
+- ".gitattributes"
+- "LICENSE"
+- "README.md"
 
-![](2022-04-15-11-43-00.jpg)
+圖中最外層就是在CMake_test資料夾底下。
+
+![](2022-05-01-21-55-41.png)
 
 檔案內容：
-- VscodeCmakeGccTest/CmakeLists.txt
+- CMake_test/CmakeLists.txt
     ```
     cmake_minimum_required(VERSION 3.0)
-    PROJECT(example)
+    project(test_include)
+
+    set(SRC_DIR src)
+    set(INC_DIR include)
+    set(MAIN_DIR main)
+
 
     set(CMAKE_BUILD_TYPE "DEBUG")
-    set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+    set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggbb")
     set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 
-    include_directories(.)
-    include_directories(${PROJECT_SOURCE_DIR}/src)
-    include_directories(${PROJECT_SOURCE_DIR}/include)
+    set(CMAKE_VERBOSE_MAKEFILE true)
 
-    add_subdirectory(src)
-    add_subdirectory(test)
-    ```
-- VscodeCmakeGccTest/src/CMakeLists.txt
-    ```
-    PROJECT(mytest)
+    aux_source_directory(${INC_DIR} head)
+    aux_source_directory(${SRC_DIR} source)
 
-    aux_source_directory(. SRC)
+    include_directories(${INC_DIR})#讓CMake知道在編譯的時候有一個存放檔案的路徑
+    include_directories(${SRC_DIR})
 
-    add_library(mytest ${SRC})
+    add_library(libs ${head} ${source})
+    add_executable(main ${MAIN_DIR}/main.c)
+    target_link_libraries(main libs)
     ```
-- VscodeCmakeGccTest/src/func.c
+- CMake_test/src/liba.c
     ```
+    #include "liba.h"
+
+    #ifndef COMMON_LIB
+    #define COMMON_LIB
     #include <stdio.h>
+    #endif
 
-    void func_print(void){
-        printf("Hello\n");
+    void test_liba(void){
+        from_liba();
+    }
+    void from_liba(){
+        printf("function_A success\n");
+    }
+
+    ```
+- CMake_test/src/libb.c
+    ```
+    #include "libb.h"
+
+    #ifndef COMMON_LIB
+    #define COMMON_LIB
+    #include <stdio.h>
+    #endif
+
+    void testBB(void){
+        printf("function_B success\n");
     }
     ```
-- VscodeCmakeGccTest/src/func.h
+
+- CMake_test/include/liba.h
     ```
-    #ifndef FUNC_H
-    #define FUNC_H
-
-    void func_print(void);
-
+    #ifndef LIB_A
+    #define LIB_A
+    void test_liba(void);
+    void from_liba(void);
     #endif
     ```
-- VscodeCmakeGccTest/test/CMakeLists.txt
+- CMake_test/include/libb.h
     ```
-    PROJECT(main)
-
-    aux_source_directory(. SRC)
-
-    add_executable(main ${SRC})
-
-    target_link_libraries(main mytest)
+    #ifndef LIB_B
+    #define LIB_B
+    void testBB(void);
+    #endif
     ```
-- VscodeCmakeGccTest/test/main.c
+- CMake_test/main/main.c
     ```
-    #include "func.h"
+    #include "liba.h"
+    #include "libb.h"
+    #include <stdlib.h>
 
-    int main(void){
-        func_print();
-        int i = 0;
-        int f = 1;
-        int k = 22;
-        int p = 30;
+    int main(){
+        int FF = 0;
+        FF = 1;
+        FF = 2;
+        test_liba();
+        testBB();
         return 0;
     }
     ```
-- VscodeCmakeGccTest/.vscode/launch.json
+- CMake_test/.vscode/launch.json
     ```
     {
-        "version" : "0.2.0",
+        "version": "0.2.0",
         "configurations": [
             {
-                "name" : "gcc.exe",
-                "type" : "cppdbg",
+                "name": "gcc.exe",
+                "type": "cppdbg",
                 "request": "launch",
-                "program": "${workspaceFolder}\\build\\test\\main.exe",
+                "program": "${workspaceRoot}\\build\\main.exe",
                 "args": [],
                 "stopAtEntry": false,
                 "cwd": "${workspaceFolder}",
@@ -190,7 +219,7 @@ categories:
                     {
                         "description": "為 gdb 啟用整齊印出",
                         "text": "-enable-pretty-printing",
-                        "ignoreFailures": true
+                        "ignoreFailures": true,
                     }
                 ],
                 "preLaunchTask": "task of build"
@@ -198,17 +227,17 @@ categories:
         ]
     }
     ```
-- VscodeCmakeGccTest/.vscode/settings.json
+- CMake_test/.vscode/settings.json
     ```
     {
         "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     }
     ```
-- VscodeCmakeGccTest/.vscode/tasks.json
+- CMake_test/.vscode/tasks.json
     ```
     {
         "version": "2.0.0",
-        "tasks": [/*All jobs are difined like below*/
+        "tasks": [
             {
                 "label": "task of cmake",
                 "type": "shell",
@@ -221,12 +250,11 @@ categories:
             {
                 "label": "task of make",
                 "type": "shell",
-                "command": "mingw32-make",
-
                 "options": {
                     "cwd": "${workspaceRoot}/build"
                 },
-                "dependsOn": ["task of cmake"]
+                "command": "mingw32-make",
+                "dependsOn":["task of cmake"]
             },
             {
                 "label": "task of build",
@@ -250,21 +278,22 @@ categories:
 
 1. 這個快捷鍵是在進行整個專案的連結與創建，而創建的動作則是根據".vscode/tasks.json"中的內容去執行的。若創建成功，則會在build資料夾中生成一些檔案，並且在路徑"build/test/"底下生成main.exe(等等要Debug必須要有這個main.exe檔案)。Build成功之後資料夾的結構會如下圖所示。
 
-    ![](2022-04-15-12-37-15.jpg)
+    ![](2022-05-02-11-48-08.png)
 
     創建的過程會在VScode的終端輸出一些資訊，如下圖。
 
-    ![](2022-04-15-12-41-19.jpg)
+    ![](2022-05-02-11-50-57.png)
+    ![](2022-05-02-11-51-21.png)
 
 2. 在main.c中設置斷點(breakpoint)
-打開main.c並在程式碼第4行設置斷點，設置方式是在欲設置斷點的行數左方用滑鼠左鍵點一下。設置好的樣子如下圖所示。
+    打開main.c並在程式碼第4行設置斷點，設置方式是在欲設置斷點的行數左方用滑鼠左鍵點一下。設置好的樣子如下圖所示。
 
-    ![](2022-04-15-12-47-03.jpg)
+    ![](2022-05-02-20-30-00.png)
 
-現在按下"左邊列第四個圖示"或是同時按下快捷鍵(Ctrl + Shift + D)，就會到VScode的Debug畫面，如下圖。<br>
+    現在按下"左邊列第四個圖示"或是同時按下快捷鍵(Ctrl + Shift + D)，就會到VScode的Debug畫面，如下圖。<br>
     ![](2022-04-15-12-47-54.jpg)
-按下那個綠色的三角形，即可進入Debug畫面。如下圖。(黑色的終端畫面可以讓程式碼的輸出印在上面)<br>
-    ![](2022-04-15-12-51-15.jpg)
+    按下那個綠色的三角形，即可進入Debug畫面。如下圖。(黑色的終端畫面可以讓程式碼的輸出印在上面)<br>
+    ![](2022-05-02-20-32-03.png)
 上面那幾個按鈕的功能如下：
 　按鈕　|　功能　|
 ---|:---:|
@@ -275,13 +304,19 @@ categories:
 ![](2022-04-15-12-58-03.jpg)|重新執行Debug|
 ![](2022-04-15-12-58-26.jpg)|終止Debug|
 
-現在一次一次的按下第二個按鈕，可以看到黑色終端與左上方區域變數的變化。如下圖。
+    現在一次一次的按下第二個按鈕，可以看到黑色終端與左上方區域變數的變化。如下圖。<br>
+<br>
+
+<br>
+
 1. 按下第一次
-![](2022-04-15-13-03-23.jpg)
+![](2022-05-02-20-32-56.png)
 2. 按下第二次
-![](2022-04-15-13-03-52.jpg)
+![](2022-05-02-20-33-38.png)
 3. 按下第三次
-![](2022-04-15-13-04-15.jpg)
+![](2022-05-02-20-34-01.png)
+4. 按下第四次
+![](2022-05-02-20-34-21.png)
 
 ### 方式二：直接到Debug畫面按下綠色三角形
 結果也會跟"方式一"一樣，只是他會直接進到Debug畫面，需事先設定好程式的斷點。
@@ -294,12 +329,9 @@ categories:
 
 ---
 ## 延伸
-1. 如果要嘗試修改**專案結構**與"CMakeLists.txt"可以參考這個Git repo
-    - [試著修改專案結構與"CMakeLists.txt"](https://github.com/XPPGX/CMake_test)
-    
-2. 剩下要多理解CMake語法的話，可以參考這篇文章
+1. 剩下要多理解CMake語法的話，可以參考這篇文章
     - [CMake 入門](https://zh.m.wikibooks.org/wiki/CMake_%E5%85%A5%E9%96%80)
-3. 要試著理解"tasks.json"的話，可以參考這篇文章
+2. 要試著理解"tasks.json"的話，可以參考這篇文章
     - [VSCode 配置文件的变量索引](https://zhuanlan.zhihu.com/p/44967536)
 
     可以藉著這篇文章與本專案的"tasks.json"比對內容以理解其中的語法。
