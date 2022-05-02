@@ -105,10 +105,11 @@ categories:
 - ".gitattributes"
 - "LICENSE"
 - "README.md"
+- "build/.gitkeep"
 
 圖中最外層就是在CMake_test資料夾底下。
 
-![](2022-05-01-21-55-41.png)
+![](2022-05-02-22-12-49.png)
 
 檔案內容：
 - CMake_test/CmakeLists.txt
